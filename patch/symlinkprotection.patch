@@ -1,0 +1,28 @@
+--- httpd-2.2.17.orig/server/request.c	2011-04-04 17:39:45.000000000 -0400
++++ httpd-2.2.17/server/request.c	2011-04-04 17:29:22.000000000 -0400
+@@ -352,7 +352,7 @@
+     savename = (lfi->valid & APR_FINFO_NAME) ? lfi->name : NULL;
+ 
+     /* if OPT_SYM_OWNER is unset, we only need to check target accessible */
+-    if (!(opts & OPT_SYM_OWNER)) {
++    if (/*!(opts & OPT_SYM_OWNER)*/0) { // Always enforce symlink checks
+         if ((res = apr_stat(&fi, d, lfi->valid & ~(APR_FINFO_NAME
+                                                  | APR_FINFO_LINK), p))
+                  != APR_SUCCESS) {
+@@ -979,6 +979,7 @@
+              * if...we have allowed symlinks
+              * skip the lstat and dummy up an APR_DIR value for thisinfo.
+              */
++			/* Skip this...  We always want symlinks checked
+             if (r->finfo.filetype
+ #ifdef CASE_BLIND_FILESYSTEM
+                 && (filename_len <= canonical_len)
+@@ -989,7 +990,7 @@
+                 thisinfo.filetype = APR_DIR;
+                 ++seg;
+                 continue;
+-            }
++            }*/
+ 
+             /* We choose apr_stat with flag APR_FINFO_LINK here, rather that
+              * plain apr_stat, so that we capture this path object rather than
