@@ -13,12 +13,12 @@ To use:
 
 As a patch to Apache httpd 2.2:
 
-	Untar Apache httpd 2.2 source
-	Retrieve the symlinkprotection.patch from patch/
-	Apply patch (e.g.: patch -p0 << symlinkprotection.patch)
-	Compile Apache
+- Untar Apache httpd 2.2 source
+- Retrieve the symlinkprotection.patch from patch/
+- Apply patch (e.g.: patch -p0 << symlinkprotection.patch)
+- Compile Apache
 	
 As a cPanel EasyApache module:
 
-	Place SymlinkProtection.pm* from easy/ into /var/cpanel/easy/apache/custom_opt_mods/Cpanel/Easy/Apache
-	Run /scripts/easyapache, and select SymlinkProtection from the "Exhaustive Options" list
+- Place SymlinkProtection.pm* from easy/ into /var/cpanel/easy/apache/custom_opt_mods/Cpanel/Easy/Apache
+- Run /scripts/easyapache, and select SymlinkProtection from the "Exhaustive Options" list
